@@ -1,8 +1,13 @@
-import { Geist, Geist_Mono, Inter, Public_Sans } from "next/font/google"
+import { Geist_Mono, Inter, Public_Sans } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ClerkProvider } from "@clerk/nextjs"
+import { Toaster } from "@/components/ui/toast"
 import { cn } from "@/lib/utils";
+
+export const metadata = {
+  title: "Gerenciador de Tarefas",
+}
 
 const publicSansHeading = Public_Sans({subsets:['latin'],variable:'--font-heading'});
 
@@ -20,12 +25,15 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable, publicSansHeading.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ClerkProvider>
+          {children}
+          <Toaster />
+        </ClerkProvider>
       </body>
     </html>
   )

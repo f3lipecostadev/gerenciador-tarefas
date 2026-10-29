@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:17
+    container_name: gerenciador-tarefas-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gerenciador_tarefas
+    ports:
+      - "5433:5432"
+    volumes:
+      - gerenciador-tarefas-data:/var/lib/postgresql/data
+
+volumes:
+  gerenciador-tarefas-data:
